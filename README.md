@@ -7,12 +7,16 @@ This project is an end-to-end data engineering and analysis pipeline built using
 The goal of this project is to transform raw earthquake data into refined, business-ready datasets that are optimized for analytics, reporting, and visualization.
 
 ## Architecture
-The project architecture consists of three primary layers:
-1. **Bronze Layer**: Raw earthquake data is ingested from the USGS API with minimal processing.
-2. **Silver Layer**: The data is cleaned, transformed, and consolidated for further analysis.
-3. **Gold Layer**: Refined, business-ready datasets are optimized for high-value insights and reporting in Power BI.
 
-![Architecture Diagram](assets/architecture.png)
+The project architecture follows a Medallion Architecture approach, consisting of three primary layers:
+
+1. **Bronze Layer**: Raw earthquake data is ingested from the USGS API with minimal processing. This layer serves as the foundational data repository.
+
+2. **Silver Layer**: The data is cleaned, transformed, and consolidated. Key fields are extracted, and data is prepared for analytical processing.
+
+3. **Gold Layer**: Refined, business-ready datasets are created. These datasets are optimized for high-value insights and reporting, and are ready for visualization in Power BI.
+
+<img src="assets/architecture.png" alt="Architecture" width="800"/>
 
 ## Technologies Used
 - **Microsoft Fabric**: For data engineering, orchestration, and processing.
@@ -23,21 +27,39 @@ The project architecture consists of three primary layers:
 - **USGS API**: As the source for earthquake event data.
 
 ## Implementation Steps
-1. **Ingest Raw Data (Bronze Layer)**:
-   - Use Microsoft Fabric's Data Factory to ingest earthquake data from the USGS API.
-   - Store the data in its original format for further processing.
+Following resources were used to implement the pipeline:
 
-2. **Data Cleaning & Transformation (Silver Layer)**:
-   - Clean and transform the raw earthquake data using PySpark.
-   - Consolidate the data for analytical purposes, including filtering irrelevant records and handling missing values.
+<img src="assets/resources.png" alt="Resources" width="800"/>
 
-3. **Create Business-Ready Datasets (Gold Layer)**:
-   - Further refine the data to create optimized datasets for analysis.
-   - These datasets are used for visualizations in Power BI, enabling real-time insights and reporting.
+### Bronze Layer: Raw Data Ingestion
+- **Objective**: Fetch and store raw earthquake data from the USGS API with minimal processing.
+- **Process**: Save the raw data in its original format for further refinement.
 
-4. **Visualization and Reporting**:
-   - Create interactive reports in Power BI using the refined earthquake data.
-   - Provide insights on earthquake patterns, trends, and impacts.
+### Silver Layer: Data Cleaning & Transformation
+- **Objective**: Extract key fields like coordinates, magnitude, and time, and clean the data for analytical use.
+- **Process**: Select specific fields, convert time formats, and save the processed data as a table.
+
+<img src="assets/silver_table.png" alt="Silver Layer" width="800"/>
+
+### Gold Layer: Data Enrichment & Refinement
+- **Objective**: Prepare business-ready data by further refining and enriching the cleaned data.
+- **Process**: Add country codes, classify significance, and append data to a final table for reporting and analysis.
+
+<img src="assets/gold_table.png" alt="Gold Layer" width="800"/>
+
+### Data Orchestration
+- **Objective**: Automate and manage the entire data pipeline.
+- **Process**: Utilize Microsoft Fabric Data Factory to orchestrate data ingestion, processing, and scheduling. Ensure seamless data flow between Bronze, Silver, and Gold layers.
+
+<img src="assets/data_pipeline.png" alt="Data Factory" width="800"/>
+
+### Visualization and Reporting
+- **Objective**: Create interactive reports and dashboards to visualize earthquake data.
+- **Process**: Use Power BI to generate insights on earthquake patterns, trends, and impacts.
+
+<img src="assets/earthquake_analytics.png" alt="Dashboard" width="800"/>
+
+<img src="assets/analytics_dashboard.png" alt="Dashboard" width="800"/>
 
 ## Conclusion
-This project demonstrates the power of Microsoft Fabric in building an efficient data engineering pipeline, transforming raw earthquake data into valuable insights. By leveraging Data Factory, Data Engineering, and Power BI, we can automate the ingestion, transformation, and analysis of seismic event data for real-time reporting and decision-making.
+The pipeline successfully ingests, processes, and refines earthquake data from the USGS API, transforming it into actionable insights. By leveraging Microsoft Fabric’s Data Factory for orchestration and Power BI for visualization, the project delivers comprehensive and interactive reports on global earthquake events.
